@@ -24,6 +24,7 @@ Parameters:
     MinLength: 1
   DBName:
     Type: String
+    Default: WSO2DB
     Description: Database Name
   DBUsername:
     Type: String
@@ -170,7 +171,7 @@ Mappings:
       img: ami-05b6fba4481489641
     SUSE:
       '12': ami-009fab158dcff70e0
-      '15': ami-031d5c08816294d03
+      '15': ami-01c589930197a5298
 #Conditions
 Conditions:
  IsWindows: !Equals [ !Ref OS, "Windows" ]
