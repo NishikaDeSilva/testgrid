@@ -171,7 +171,7 @@ Mappings:
       img: ami-05b6fba4481489641
     SUSE:
       '12': ami-009fab158dcff70e0
-      '15': ami-01c589930197a5298
+      '15': ami-084ec50fdb5ed5900
 #Conditions
 Conditions:
  IsWindows: !Equals [ !Ref OS, "Windows" ]
