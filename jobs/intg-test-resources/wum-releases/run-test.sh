@@ -29,7 +29,7 @@ OperatingSystem=$(grep -w "OS" ${PROP_FILE} | cut -d'=' -f2)
 PRODUCT_NAME=$(grep -w "WSO2_PRODUCT" ${PROP_FILE}| cut -d'=' -f2 | cut -d'-' -f1)
 PRODUCRT_VERSION=$(grep -w "WSO2_PRODUCT" ${PROP_FILE}| cut -d'=' -f2 | cut -d'-' -f2)
 
-SCRIPT_LOCATION=$(grep -w "test_script_url" ${PROP_FILE} | cut -d'=' -f2)
+SCRIPT_LOCATION=$(grep -w "TEST_SCRIPT_URL" ${PROP_FILE} | cut -d'=' -f2)
 TEST_SCRIPT_NAME=$(echo $SCRIPT_LOCATION | rev | cut -d'/' -f1 | rev)
 NEXUS_TEST_SCRIPT_NAME="uat-nexus-settings.xml"
 NEXUS_SCRIPT_PATH='/testgrid/testgrid-home/jobs/wso2am-2.1.0-int-test'
