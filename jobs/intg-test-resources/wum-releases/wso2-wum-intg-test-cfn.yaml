@@ -163,15 +163,13 @@ Mappings:
     oracle-se1:
       license: license-included
   OperatingSystemAMI:
-    Ubuntu:
-      img: ami-025def472c84238d3
-    CentOS:
-      img: ami-01ad4ff4d5b37a948
-    RHEL:
-      img: ami-05b6fba4481489641
-    SUSE:
-      '12': ami-009fab158dcff70e0
-      '15': ami-084ec50fdb5ed5900
+    ami:
+      Ubuntu: ami-025def472c84238d3
+      CentOS: ami-01ad4ff4d5b37a948
+      RHEL: ami-05b6fba4481489641
+      # SUSE:
+      #   '12': ami-009fab158dcff70e0
+      #   '15': ami-084ec50fdb5ed5900
 #Conditions
 Conditions:
  IsWindows: !Equals [ !Ref OS, "Windows" ]
@@ -252,8 +250,8 @@ Resources:
       InstanceInitiatedShutdownBehavior: stop
       ImageId: !FindInMap
       - OperatingSystemAMI
+      - ami
       - !Ref OS
-      - !Ref OSVersion
       InstanceType: !Ref WSO2InstanceType
       KeyName: !Ref EC2KeyPair
       AvailabilityZone: !Select
@@ -395,8 +393,8 @@ Resources:
         InstanceInitiatedShutdownBehavior: stop
         ImageId: !FindInMap
         - OperatingSystemAMI
+        - ami
         - !Ref OS
-        - !Ref OSVersion
         InstanceType: !Ref WSO2InstanceType
         KeyName: !Ref EC2KeyPair
         Monitoring: 'false'
