@@ -93,16 +93,29 @@ log_info "Downloading Database provision scripts"
 if ! wget https://integration-testgrid-resources.s3.amazonaws.com/db_scripts/${DB_PROV_SCRIPT_NAME}; then
     log_error "Downloading provision scripts failed"
 fi
+mkdir "is5100"
+if ! wget https://integration-testgrid-resources.s3.amazonaws.com/db_scripts/is5100/is_oracle_bps.sql -P is5100; then
+    log_error "Downloading provision scripts failed"
+fi
+if ! wget https://integration-testgrid-resources.s3.amazonaws.com/db_scripts/is5100/is_oracle_common.sql -P is5100; then
+    log_error "Downloading provision scripts failed"
+fi
+if ! wget https://integration-testgrid-resources.s3.amazonaws.com/db_scripts/is5100/is_oracle_consent.sql -P is5100; then
+    log_error "Downloading provision scripts failed"
+fi
+if ! wget https://integration-testgrid-resources.s3.amazonaws.com/db_scripts/is5100/is_oracle_identity.sql -P is5100; then
+    log_error "Downloading provision scripts failed"
+fi
 log_info "Successfully downloaded database provision scripts"
 chmod +x ${DB_PROV_SCRIPT_NAME}
 
 log_info "Updating Database provision scripts"
-sed -i "s/&CF_DB_USERNAME/${DBUsername}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&CF_DB_PASSWORD/${DBPassword}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&CF_DB_HOST/${DBHost}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&CF_DB_PORT/${DBPort}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&CF_DB_NAME/${DBEngine}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&CF_DB_VERSION/${DBEngineVersion}/g" ${DB_PROV_SCRIPT_NAME}
-sed -i "s/&PRODUCT_VERSION/${WSO2_PRODUCT_VERSION}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DB_USERNAME/${DBUsername}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DB_PASSWORD/${DBPassword}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DB_HOST/${DBHost}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DB_PORT/${DBPort}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DBMS_NAME/${DBEngine}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/CF_DBMS_VERSION/${DBEngineVersion}/g" ${DB_PROV_SCRIPT_NAME}
+sed -i "s/WSO2_PRODUCT_VERSION/${WSO2_PRODUCT_VERSION}/g" ${DB_PROV_SCRIPT_NAME}
 
 bash ${DB_PROV_SCRIPT_NAME}
